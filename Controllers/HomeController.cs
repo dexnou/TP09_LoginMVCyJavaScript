@@ -10,8 +10,9 @@ public class HomeController : Controller
     }
 
     public IActionResult Account(){
-
         
+        
+
     }
 
 }
