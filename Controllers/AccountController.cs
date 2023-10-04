@@ -7,6 +7,8 @@ public class AccountController : Controller
 
     public IActionResult Login(){
         ViewBag.ListaUsuarios = BD.LoginUsuario();
+        ViewBag.Usuario = BD.ObtenerUsuario();
+        ViewBag.error = "";
         return View();
     }
 
@@ -33,8 +35,28 @@ public class AccountController : Controller
         {
             BD.CrearUsuario(user);
         }
-        return View("PaginaBienvenida");
+        return RedirectToAction("PaginaBienvenida", "Account");
     }
+
+    [HttpPost]
+    public IActionResult SesionIniciada(string NombreUsuario, string Contraseña)
+    {
+        if(BD.ValidacionUsuario(NombreUsuario,Contraseña))
+        {
+            ViewBag.Usuario = BD.ObtenerUsuario();
+            Console.WriteLine("pasobien");
+            ViewBag.destacado = "Account";
+            return RedirectToAction("PaginaBienvenida", "Account");
+        }
+        else
+        {
+            ViewBag.Usuario = BD.ObtenerUsuario();
+            Console.WriteLine("pasomal");
+            ViewBag.error = "Nombre de usuario o contraseña no válido. Intentá de nuevo.";
+            return View("Login", "Account");
+        }  
+    }
+
 
 
 

@@ -15,7 +15,7 @@ public class BD{
     public static List<Usuario> LoginUsuario(){
         List<Usuario> listaUsuarios;
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sql = "SELECT * FROM Usuarios";
+            string sql = "SELECT * FROM Usuario";
             listaUsuarios = db.Query<Usuario>(sql).ToList();
         }
         return listaUsuarios;
@@ -38,6 +38,7 @@ public class BD{
 
     public static bool ValidacionUsuario(string nameUser, string contra)
     {
+        Console.WriteLine("Entro validacion usuario");
         using(SqlConnection db = new SqlConnection(_connectionString))
         {
             string sql = "SELECT * FROM Usuario WHERE UserName = @pName and Contraseña = @pContra";

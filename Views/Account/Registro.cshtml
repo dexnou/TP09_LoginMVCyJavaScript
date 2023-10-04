@@ -1,17 +1,18 @@
 @{
     ViewData["Title"] = "Registro";
 }
-<form method="post" action='@Url.Action("GuardarRegistro","Home")'>
+<form method="post" action='@Url.Action("GuardarRegistro","Account")'>
     <section class="form-register">
-        <h4>Formulario Registro</h4>
+        <h4>Registrate</h4>
         <input class="controls" type="text" name="UserName" id="nombres" placeholder="Ingrese su Nombre">
         <input class="controls" type="email" name="Email" id="correo" placeholder="Ingrese su Email">
         <input class="controls" type="password" name="Contraseña" id="correo" placeholder="Ingrese su Contraseña">
         <input class="controls" type="password" name="Contraseña" id="correo" placeholder="Ingrese nuevamente su Contraseña">
+        <input class="controls" type="text" name="Telefono" id="correo" placeholder="Ingrese su Teléfono">
         <input class="controls" type="text" name="Genero" id="nombres" placeholder="Ingrese su Genero (M/F)">
         <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
         <input class="botons" type="submit" value="Registrar">
-        <p><a href="#">¿Ya tengo Cuenta?</a></p>
+        <p><a href='@Url.Action("Login","Account")'>¿Ya tengo Cuenta?</a></p>
     </section>
 </form>
 
