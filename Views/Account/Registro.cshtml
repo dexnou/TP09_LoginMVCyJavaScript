@@ -6,13 +6,20 @@
         <h4>Registrate</h4>
         <input class="controls" type="text" name="UserName" id="nombres" placeholder="Ingrese su Nombre">
         <input class="controls" type="email" name="Email" id="correo" placeholder="Ingrese su Email">
-        <input class="controls" type="password" name="Contraseña" id="correo" placeholder="Ingrese su Contraseña">
-        <input class="controls" type="password" name="Contraseña" id="correo" placeholder="Ingrese nuevamente su Contraseña">
+        <input class="controls" type="password" name="Contraseña" id="password" onsubmit = ConfirmarRegistro() placeholder="Ingrese su Contraseña">
+        <div class="alert alert-info" role="alert" style="padding:.25rem .75rem;margin-top:5px;">
+            <span style="color: red;" id="mensajeA"> La contreña debe contener al menos 8 caracteres</span><br>
+            <span style="color: red;" id="mensajeB"> La contreña debe contener al menos una mayuscula</span><br>
+            <span style="color: red;" id="mensajeC"> La contreña debe contener al menos un caracter especial</span>
+        </div>
+
+        <input class="controls" type="password" name="Contraseña" id="password" placeholder="Ingrese nuevamente su Contraseña">
         <input class="controls" type="text" name="Telefono" id="correo" placeholder="Ingrese su Teléfono">
         <input class="controls" type="text" name="Genero" id="nombres" placeholder="Ingrese su Genero (M/F)">
         <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
         <input class="botons" type="submit" value="Registrar">
         <p><a href='@Url.Action("Login","Account")'>¿Ya tengo Cuenta?</a></p>
+        <p><a href='@Url.Action("Olvide","Account")'>¿Te olvidaste tu contraseña?</a></p>
     </section>
 </form>
 

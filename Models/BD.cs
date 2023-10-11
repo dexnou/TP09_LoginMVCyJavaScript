@@ -36,9 +36,17 @@ public class BD{
         bool esValido = ValidacionUsuario(User.UserName, User.Contraseña);
     }
 
+    public static void ActualizarContraseña(string mailUser, string contra){
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            // string sql = "UPDATE Usuario SET Contraseña = @pContra WHERE Email = @pMail";
+            string sql = "SELECT * FROM Usuario WHERE Email = @pMail";
+            Console.WriteLine("ENTRA UPDATE");
+            Usuario usuario = db.QueryFirstOrDefault<Usuario>(sql, new{pMail = mailUser});
+        }
+    }
+
     public static bool ValidacionUsuario(string nameUser, string contra)
     {
-        Console.WriteLine("Entro validacion usuario");
         using(SqlConnection db = new SqlConnection(_connectionString))
         {
             string sql = "SELECT * FROM Usuario WHERE UserName = @pName and Contraseña = @pContra";

@@ -61,8 +61,13 @@ public class AccountController : Controller
 
 
     public IActionResult Olvide(){
-
+        ViewBag.Usuario = BD.ObtenerUsuario();
         return View();
+    }
+
+    public IActionResult OlvideLaContraseña(string mailUser, string contra){
+        BD.ActualizarContraseña(mailUser,contra);
+        return View("Login", "Account");
     }
 
     
