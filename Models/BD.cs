@@ -63,15 +63,16 @@ public class BD{
     }
 
 
-    public static bool VerificacionUsuarioMail(string email)
+    public static Usuario VerificacionUsuarioMail(string email)
     {
-        string sql = "SELECT 1 FROM Usuario WHERE Email = @pMail";
+        Usuario result;
+        string sql = "SELECT * FROM Usuario WHERE Email = @pMail";
 
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            int result = db.QueryFirstOrDefault<int>(sql, new { pMail = email });
-            return result == 1;
+            result = db.QueryFirstOrDefault<Usuario>(sql, new { pMail = email });
         }
+        return result;
     }
 
 

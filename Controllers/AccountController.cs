@@ -66,8 +66,8 @@ public class AccountController : Controller
     }
 
     public IActionResult OlvideLaContraseña(string mailUser, string contra){
-        bool usuarioVerificado = BD.VerificacionUsuarioMail(mailUser);
-        if(usuarioVerificado == false){
+        Usuario usuarioVerificado = BD.VerificacionUsuarioMail(mailUser);
+        if(usuarioVerificado == null){
             Console.WriteLine("Entro error verificacion");
             // ViewBag.MensajeError = "Ese nombre de usuario no existe";
             return View("Olvide", "Account");
