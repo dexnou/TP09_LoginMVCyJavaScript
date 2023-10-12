@@ -66,8 +66,21 @@ public class AccountController : Controller
     }
 
     public IActionResult OlvideLaContraseña(string mailUser, string contra){
-        BD.ActualizarContraseña(mailUser,contra);
-        return View("Login", "Account");
+        bool usuarioVerificado = BD.VerificacionUsuarioMail(mailUser);
+        if(usuarioVerificado == false){
+            Console.WriteLine("Entro error verificacion");
+            // ViewBag.MensajeError = "Ese nombre de usuario no existe";
+            return View("Olvide", "Account");
+        }
+        else
+        {
+            Console.WriteLine("NUEVA CONTRASEÑA: " + contra);
+            BD.ContraseñaActualizar(mailUser, contra);
+            return View("Login", "Account");
+        }
+
+        // BD.ActualizarContraseña(mailUser,contra);
+        // return View("Login", "Account");
     }
 
     

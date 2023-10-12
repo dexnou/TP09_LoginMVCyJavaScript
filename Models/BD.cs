@@ -55,6 +55,26 @@ public class BD{
         return(_UserLog != null);
     }
 
+    public static void ContraseñaActualizar(string email, string contraNueva){
+        string sql = "UPDATE Usuario SET Contraseña = @pContra where Email = @pMail";
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            db.Execute(sql, new {pContra = contraNueva, pMail = email});
+        }
+    }
+
+
+    public static bool VerificacionUsuarioMail(string email)
+    {
+        string sql = "SELECT 1 FROM Usuario WHERE Email = @pMail";
+
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            int result = db.QueryFirstOrDefault<int>(sql, new { pMail = email });
+            return result == 1;
+        }
+    }
+
+
 
 
 }
